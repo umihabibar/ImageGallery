@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text,StyleSheet, Dimensions, ScrollView, TouchableOpacity, Modal, Image } from 'react-native';
+import { View, Text,StyleSheet, Dimensions, ScrollView, TouchableOpacity, Modal, FlatList } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 interface Props {
@@ -31,7 +31,7 @@ const ImageScroll: React.FC<Props> = ({ imageUrls, imagesPerRow }) => {
       </TouchableOpacity>
     );
 
-    const restImages = [];
+    const restImages: JSX.Element[] = [];
 
     for (let i = 0; i < rows; i++) {
       const rowImages = imageUrls.slice(i * imagesPerRow + 1, (i + 1) * imagesPerRow + 1);
@@ -50,16 +50,25 @@ const ImageScroll: React.FC<Props> = ({ imageUrls, imagesPerRow }) => {
     }
 
     return (
-      <ScrollView horizontal showsHorizontalScrollIndicator={true}>
+      <FlatList
+      initialNumToRender={3}
+      horizontal
+      showsHorizontalScrollIndicator={true}
+      data={[0]}
+      
+      keyExtractor={(item) => item.toString()}
+      renderItem={() => (
         <View style={styles.container}>
           <View style={styles.column}>
             {firstImage}
           </View>
           {restImages}
         </View>
-      </ScrollView>
-    );
-  };
+      )}
+    />
+  );
+};
+   
 
   const renderImagePreview = () => {
     if (selectedImageIndex !== null) {
