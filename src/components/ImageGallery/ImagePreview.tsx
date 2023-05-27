@@ -12,7 +12,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ imageUrl, onClose }) => {
       <View style={styles.container}>
         <Image source={{ uri: imageUrl }} style={styles.image} resizeMode="contain" />
         <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-          <Text style={styles.closeButtonText}>Close</Text>
+            <Image source={require('../../Images/closeIcon.png')} style={{width:20,height:20}} resizeMode="contain" />
         </TouchableOpacity>
         <View style={styles.footer}>
           <TouchableOpacity style={styles.button}>
@@ -49,10 +49,6 @@ const styles = StyleSheet.create({
     top: 40,
     right: 20,
     zIndex: 1,
-  },
-  closeButtonText: {
-    color: 'white',
-    fontSize: 18,
   },
   footer: {
     position: 'absolute',
