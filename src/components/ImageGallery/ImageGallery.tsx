@@ -18,7 +18,6 @@ const ImageGallery: React.FC<MyComponentProps> = ({ imageUrls }) => {
   const [imagepreview, setImagePreview] = useState(false);
 
   useEffect(() => {
-    // Simulating the skeleton loading delay
     const timer = setTimeout(() => {
       setSkeletonLoading(false);
     }, 2000);
