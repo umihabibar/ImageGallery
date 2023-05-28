@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    top: 40,
-    right: 20,
+    top: 10,
+    right: 10,
     zIndex: 1,
   },
   footer: {
