@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Image, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import ImagePreview from './ImagePreview';
+import FastImage from 'react-native-fast-image';
 
 interface MyComponentProps {
   imageUrls: string[];
@@ -49,10 +50,10 @@ const ImageGallery: React.FC<MyComponentProps> = ({ imageUrls }) => {
     if (errorImages.includes(item)) {
       return (
         <View style={styles.imageContainer}>
-          <Image
+          <FastImage
             source={require('../../Images/noImage.png')}
             style={styles.image}
-            resizeMode="contain"
+            resizeMode={FastImage.resizeMode.cover}
           />
         </View>
       );
@@ -60,11 +61,12 @@ const ImageGallery: React.FC<MyComponentProps> = ({ imageUrls }) => {
 
     return (
       <TouchableOpacity onPress={() => openImagePreview(item)} activeOpacity={0.1}>
-        <Image
+        <FastImage
           source={{ uri: item }}
           key={index}
           style={styles.image}
           onLoad={handleImageLoad}
+          resizeMode={FastImage.resizeMode.cover}
           onError={() => handleImageError(index)}
         />
       </TouchableOpacity>
@@ -73,6 +75,7 @@ const ImageGallery: React.FC<MyComponentProps> = ({ imageUrls }) => {
 
   return (
     <>
+    
       <FlatList
         initialNumToRender={3}
         horizontal
@@ -82,6 +85,7 @@ const ImageGallery: React.FC<MyComponentProps> = ({ imageUrls }) => {
       />
       {imagepreview && <ImagePreview imageUrl={imageurl[0]} onClose={closeImagePreview}/>}
     </>
+
   );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Modal, Image, StyleSheet, TouchableOpacity, View, Text, Dimensions,Animated } from 'react-native';
+import { Modal, Image, StyleSheet, TouchableOpacity, View, Text, Dimensions, Animated } from 'react-native';
 import { PinchGestureHandler, GestureHandlerRootView } from 'react-native-gesture-handler';
-
+import FastImage from 'react-native-fast-image';
 interface ImagePreviewProps {
   imageUrl: string;
   onClose: () => void;
@@ -22,14 +22,19 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ imageUrl, onClose }) => {
           onHandlerStateChange={handlePinchGesture}
         >
           <Animated.View style={[styles.imageContainer, { transform: [{ scale }] }]}>
-            <Image source={{ uri: imageUrl }} style={styles.image} resizeMode="contain" />
+            <FastImage
+              source={{ uri: imageUrl }}
+              style={styles.image}
+              resizeMode={FastImage.resizeMode.cover}
+            />
           </Animated.View>
         </PinchGestureHandler>
         <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-          <Image
+          <FastImage
             source={require('../../Images/closeIcon.png')}
             style={{ width: 20, height: 20 }}
-            resizeMode="contain"
+            resizeMode={FastImage.resizeMode.cover}
+
           />
         </TouchableOpacity>
         <View style={styles.footer}>
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-   imageContainer: {
+  imageContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -90,8 +95,8 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     // backgroundColor: '#e0e0e0',
-    borderWidth:1,
-    borderColor:"#ccc",
+    borderWidth: 1,
+    borderColor: "#ccc",
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 8,
@@ -101,7 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-    color:"white"
+    color: "white"
   },
 });
 
