@@ -91,8 +91,8 @@ const ImageGallery: React.FC<MyComponentProps> = ({ imageUrls }) => {
 
 const styles = StyleSheet.create({
   skeleton: {
-    width: 260,
-    height: 300,
+    width: 250,
+    height: 250,
     borderWidth: 1,
     borderColor: '#ccc',
     margin: 8,
